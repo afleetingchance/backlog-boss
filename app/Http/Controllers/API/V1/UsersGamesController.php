@@ -5,6 +5,7 @@ namespace App\Http\Controllers\API\V1;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\CreateUsersGamesFromUserRequest;
 use App\Models\User;
+use App\Models\UsersGames;
 use App\Repo\UsersGamesRepo;
 use App\Types\UsersGamesType;
 use Illuminate\Contracts\Routing\ResponseFactory;
@@ -33,6 +34,20 @@ class UsersGamesController extends Controller
         } catch (Throwable $throwable) {
             logger()->error($throwable->getMessage());
             return response(status: 409);
+        }
+    }
+
+    public function destroy(UsersGames $userGame): Response
+    {
+        logger('$userGame', [$userGame]);
+        /** @var User $authUser */
+        $authUser = auth()->user();
+
+        if ((string)$userGame->user_id === (string)$authUser->id) {
+            $userGame->delete();
+            return response()->noContent();
+        } else {
+            return response(status: 401);
         }
     }
 }

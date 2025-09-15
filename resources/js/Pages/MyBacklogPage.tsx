@@ -1,19 +1,22 @@
-import React from 'react';
-import {Head} from "@inertiajs/react";
-import SignedInLayout from "@/Layouts/SignedInLayout";
-import BacklogGameTable from "@/Components/Backlog/Tables/BacklogGameTable";
-import {UserGameType} from "@/types/UserGameType";
+import BacklogGameTable from '@/Components/Backlog/Tables/BacklogGameTable';
+import Card from '@/Components/Cards/Card';
+import SignedInLayout from '@/Layouts/SignedInLayout';
+import { UserGameType } from '@/types/UserGameType';
+import { Head } from '@inertiajs/react';
 
-const MyBacklogPage = ({user_games}: {user_games: UserGameType[]}) => {
+const MyBacklogPage = ({ user_games }: { user_games: UserGameType[] }) => {
     return (
         <SignedInLayout>
             <Head title="My Backlog" />
-            { user_games.length === 0
-                ? <h1 className="border bg-red-50">No games yet!</h1>
-                : <BacklogGameTable userGames={user_games} />
-            }
+            <Card>
+                {user_games.length === 0 ? (
+                    <h1>No games yet!</h1>
+                ) : (
+                    <BacklogGameTable userGames={user_games} />
+                )}
+            </Card>
         </SignedInLayout>
-    )
-}
+    );
+};
 
-export default MyBacklogPage
+export default MyBacklogPage;

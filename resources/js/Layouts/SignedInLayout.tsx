@@ -1,20 +1,20 @@
-import React, {ReactNode} from 'react';
-import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {
     faArrowRightFromBracket,
     faBars,
     faGamepad,
     faGear,
     faListCheck,
-    faUsersLine
-} from "@fortawesome/free-solid-svg-icons";
-import {Link} from "@inertiajs/react";
+    faUsersLine,
+} from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { Link } from '@inertiajs/react';
+import { ReactNode } from 'react';
 
 type Props = {
-    children: ReactNode
-}
+    children: ReactNode;
+};
 
-const SignedInLayout = ({children}: Props) => {
+const SignedInLayout = ({ children }: Props) => {
     return (
         <>
             <button
@@ -22,7 +22,7 @@ const SignedInLayout = ({children}: Props) => {
                 data-drawer-toggle="default-sidebar"
                 aria-controls="default-sidebar"
                 type="button"
-                className="inline-flex items-center p-2 mt-2 ms-3 text-sm text-gray-500 rounded-lg sm:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600"
+                className="ms-3 mt-2 inline-flex items-center rounded-lg p-2 text-sm text-gray-500 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 sm:hidden dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600"
             >
                 <span className="sr-only">Open sidebar</span>
                 <FontAwesomeIcon icon={faBars} />
@@ -30,55 +30,86 @@ const SignedInLayout = ({children}: Props) => {
 
             <aside
                 id="default-sidebar"
-                className="fixed top-0 left-0 z-40 w-64 h-screen transition-transform -translate-x-full sm:translate-x-0"
-               aria-label="Sidebar"
+                className="fixed left-0 top-0 z-40 h-screen w-64 -translate-x-full border-r-2 border-r-gray-600 transition-transform sm:translate-x-0"
+                aria-label="Sidebar"
             >
-                <div className="h-full px-3 py-4 overflow-y-auto bg-gray-50 dark:bg-gray-800">
+                <div className="h-full overflow-y-auto bg-gray-50 px-3 py-4 dark:bg-gray-800">
                     <ul className="space-y-2 font-medium">
                         <li className="side-menu-option">
-                            <a href="#" className="group side-menu-option-link">
-                                <FontAwesomeIcon icon={faListCheck} className={'side-menu-option-icon'}/>
-                                <span className="side-menu-option-label">Backlog</span>
-                            </a>
+                            <Link
+                                href={route('myBacklog')}
+                                className="side-menu-option-link group"
+                            >
+                                <FontAwesomeIcon
+                                    icon={faListCheck}
+                                    className={'side-menu-option-icon'}
+                                />
+                                <span className="side-menu-option-label">
+                                    Backlog
+                                </span>
+                            </Link>
                         </li>
                         <li className="side-menu-option">
-                            <a href="#" className="group side-menu-option-link">
-                                <FontAwesomeIcon icon={faGamepad} className={'side-menu-option-icon'} />
-                                <span className="side-menu-option-label">Discover</span>
+                            <Link
+                                href={route('games.details', { game: 1 })}
+                                className="side-menu-option-link group"
+                            >
+                                <FontAwesomeIcon
+                                    icon={faGamepad}
+                                    className={'side-menu-option-icon'}
+                                />
+                                <span className="side-menu-option-label">
+                                    Discover
+                                </span>
                                 {/*<span*/}
                                 {/*    className="inline-flex items-center justify-center px-2 ms-3 text-sm font-medium text-gray-800 bg-gray-100 rounded-full dark:bg-gray-700 dark:text-gray-300"*/}
                                 {/*>*/}
                                 {/*    Pro*/}
                                 {/*</span>*/}
+                            </Link>
+                        </li>
+                        <li className="side-menu-option">
+                            <a href="#" className="side-menu-option-link group">
+                                <FontAwesomeIcon
+                                    icon={faUsersLine}
+                                    className={'side-menu-option-icon'}
+                                />
+                                <span className="side-menu-option-label">
+                                    Gamers
+                                </span>
                             </a>
                         </li>
                         <li className="side-menu-option">
-                            <a href="#" className="group side-menu-option-link">
-                                <FontAwesomeIcon icon={faUsersLine} className={'side-menu-option-icon'} />
-                                <span className="side-menu-option-label">Gamers</span>
-                            </a>
-                        </li>
-                        <li className="side-menu-option">
-                            <a href="#" className="group side-menu-option-link">
+                            <a href="#" className="side-menu-option-link group">
                                 <FontAwesomeIcon icon={faGear} />
-                                <span className="side-menu-option-label">Settings</span>
+                                <span className="side-menu-option-label">
+                                    Settings
+                                </span>
                             </a>
                         </li>
                         <li className="side-menu-option">
-                            <Link href={route('logout')} method={'post'} className="group side-menu-option-link">
-                                <FontAwesomeIcon icon={faArrowRightFromBracket} />
-                                <span className="side-menu-option-label">Logout</span>
+                            <Link
+                                href={route('logout')}
+                                method={'post'}
+                                className="side-menu-option-link group"
+                            >
+                                <FontAwesomeIcon
+                                    icon={faArrowRightFromBracket}
+                                />
+                                <span className="side-menu-option-label">
+                                    Logout
+                                </span>
                             </Link>
                         </li>
                     </ul>
                 </div>
             </aside>
 
-            <div className="p-2 sm:ml-64">
+            <div className="h-full bg-gray-900 px-12 py-6 sm:ml-64">
                 {children}
             </div>
         </>
     );
-}
+};
 
-export default SignedInLayout
+export default SignedInLayout;
