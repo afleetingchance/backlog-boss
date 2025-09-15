@@ -4,14 +4,13 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-return new class extends Migration
-{
+return new class extends Migration {
     /**
      * Run the migrations.
      */
     public function up(): void
     {
-        if(!Schema::hasTable('users_games')) {
+        if (!Schema::hasTable('users_games')) {
             Schema::create('users_games', function (Blueprint $table) {
                 $table->id();
                 $table->unsignedBigInteger('user_id')->nullable(false);
@@ -24,6 +23,7 @@ return new class extends Migration
                     ->references('id')
                     ->on('games')
                     ->onDelete('cascade');
+                $table->unique(['user_id', 'game_id']);
                 $table->boolean('is_owned')->nullable(false)->default(0);
                 $table->boolean('is_wishlisted')->nullable(false)->default(0);
                 $table->unsignedTinyInteger('platform_preference')->nullable(true);

@@ -1,14 +1,18 @@
 <?php
 
 declare(strict_types=1);
+
 namespace App\Models;
 
 use App\Enums\GamePlatforms;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class UsersGames extends Model
 {
+    use HasFactory;
+
     protected $fillable = [
         'user_id',
         'game_id',
@@ -16,7 +20,7 @@ class UsersGames extends Model
         'is_wishlisted',
         'platform_preference',
         'rating',
-        'review',
+        'review'
     ];
 
     protected function casts(): array

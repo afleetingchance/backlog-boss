@@ -4,13 +4,11 @@ namespace App\Http\Controllers\API\V1;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\CreateUsersGamesFromUserRequest;
-use App\Models\Game;
 use App\Models\User;
 use App\Repo\UsersGamesRepo;
 use App\Types\UsersGamesType;
 use Illuminate\Contracts\Routing\ResponseFactory;
 use Illuminate\Http\JsonResponse;
-use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Throwable;
 
