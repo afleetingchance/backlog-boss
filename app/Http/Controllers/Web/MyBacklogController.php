@@ -6,10 +6,11 @@ namespace App\Http\Controllers\Web;
 use App\Http\Controllers\Controller;
 use App\Models\User;
 use Inertia\Inertia;
+use Inertia\Response;
 
 class MyBacklogController extends Controller
 {
-    public function viewPage()
+    public function viewPage(): Response
     {
         /** @var User $authUser */
         $authUser = auth()->user();

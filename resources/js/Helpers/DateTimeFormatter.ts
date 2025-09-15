@@ -11,6 +11,12 @@ class DateTimeFormatter {
         });
     }
 
+    convertSecondsToHours(seconds: number | null | undefined): number | null {
+        if (isNullOrUndefined(seconds)) return null;
+
+        return Math.ceil(seconds / (60 * 60));
+    }
+
     convertToDate(date: Date | string): Date {
         return typeof date === 'string' ? new Date(date) : date;
     }
