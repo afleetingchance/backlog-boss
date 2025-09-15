@@ -15,7 +15,7 @@ return new class extends Migration
             Schema::create('games', function (Blueprint $table) {
                 $table->id();
                 $table->string('name',64)->nullable(false);
-                $table->string('description',256)->nullable(true);
+                $table->text('description')->nullable(true);
                 $table->string('image_url',256)->nullable(true);
                 $table->unsignedInteger('avg_time_to_beat')->nullable(true);
                 $table->float('avg_rating',2)->nullable(false)->default(0);

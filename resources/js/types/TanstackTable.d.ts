@@ -1,0 +1,11 @@
+import '@tanstack/react-table';
+
+declare module '@tanstack/react-table' {
+    interface ColumnMeta<TData extends RowData, TValue> {
+        classNames?: {
+            header?: string;
+            cell?: string;
+            footer?: string;
+        }
+    }
+}

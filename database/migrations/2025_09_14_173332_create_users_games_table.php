@@ -28,7 +28,7 @@ return new class extends Migration
                 $table->boolean('is_wishlisted')->nullable(false)->default(0);
                 $table->unsignedTinyInteger('platform_preference')->nullable(true);
                 $table->unsignedTinyInteger('rating')->nullable(true);
-                $table->text('review')->nullable(false);
+                $table->text('review')->nullable(true);
                 $table->timestamps();
             });
         }
